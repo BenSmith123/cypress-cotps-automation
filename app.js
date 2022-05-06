@@ -8,13 +8,10 @@ const cycleTimeInSeconds = 7666 * 1000; // every 2hrs and 10mins-ish
 const discordKey = process.env.DISCORD_KEY;
 const cypressRecordKey = process.env.CYPRESS_RECORD_KEY;
 
-console.log(discordKey, cypressRecordKey);
-
-
 const baseRunCommand = 'npm run cy:run -- --spec "cypress/integration/make-transaction.spec.js"';
 const runCommand = baseRunCommand + " --record --key " + cypressRecordKey;
 
-const npmRunCommand =
+const testRunCommand =
   'npm run cy:run -- --spec "cypress/integration/test.spec.js"';
 
 (async () => {
@@ -24,7 +21,7 @@ const npmRunCommand =
 
   try {
     // setInterval(async () => {
-    // const a = await execSync(runCommand, { stdio: "inherit" });
+    const a = await execSync(testRunCommand, { stdio: "inherit" });
 
     const nextRunTime = new Date(
       currentTime.setHours(currentTime.getHours() + 2)
