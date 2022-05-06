@@ -1,0 +1,19 @@
+{
+  "name": "cotps-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx cypress open",
+    "cy:run": "cypress run",
+    "hello": "echo hello",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Smith",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cypress": "^9.6.0",
+    "dotenv": "^16.0.0"
+  }
+}
