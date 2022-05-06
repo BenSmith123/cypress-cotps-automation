@@ -2,6 +2,9 @@ const axios = require('axios');
 const { execSync } = require("child_process");
 require('dotenv').config();
 
+// for debugging
+const SKIP_CYPRESS = process.env?.SKIP_CYPRESS ?? false;
+
 const DISCORD_ENABLED = true;
 const cycleTimeInSeconds = 10000 // 7666 * 1000; // every 2hrs and 10mins-ish
 
@@ -30,12 +33,14 @@ async function main() {
   console.log('Starting transaction cycle..', currentTime);
 
   try {
-    // const a = await execSync(runCommand, { stdio: "inherit" });
+    if (!SKIP_CYPRESS) {
+      await execSync(runCommand, { stdio: "inherit" });
+    }
     const nextRunTime = new Date(currentTime.setHours(currentTime.getHours() + 2));
     console.log("Running next at: ", nextRunTime);
 
   } catch (err) {
-    const errorMsg = `An unexpected error has occurred: ${err.message}\n\nStack: ${err.stack}`
+    const errorMsg = `An unexpected error has occurred: ${err.message}\n\nStack: ${err.stack}`;
     await logToDiscord(errorMsg);
   }
 }
