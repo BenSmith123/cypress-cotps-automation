@@ -6,7 +6,7 @@ require('dotenv').config();
 const SKIP_CYPRESS = process.env?.SKIP_CYPRESS ?? false;
 
 const DISCORD_ENABLED = true;
-const cycleTimeInSeconds = 10000 // 7666 * 1000; // every 2hrs and 10mins-ish
+const cycleTimeInSeconds = 7666 * 1000; // every 2hrs and 10mins-ish
 
 const discordKey = process.env.DISCORD_KEY;
 const cypressRecordKey = process.env.CYPRESS_RECORD_KEY;
