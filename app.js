@@ -1,9 +1,9 @@
-const { execSync } = require("child_process");
 const axios = require('axios');
+const { execSync } = require("child_process");
 require('dotenv').config();
 
 const DISCORD_ENABLED = true;
-const cycleTimeInSeconds = 7666 * 1000; // every 2hrs and 10mins-ish
+const cycleTimeInSeconds = 10000 // 7666 * 1000; // every 2hrs and 10mins-ish
 
 const discordKey = process.env.DISCORD_KEY;
 const cypressRecordKey = process.env.CYPRESS_RECORD_KEY;
@@ -14,25 +14,31 @@ const runCommand = baseRunCommand + " --record --key " + cypressRecordKey;
 const testRunCommand =
   'npm run cy:run -- --spec "cypress/integration/test.spec.js"';
 
+
 (async () => {
-  console.log("Starting cotps-cypress!");
+  // run on first execution before setting the 2hr timer
+  await main();
+
+  setInterval(async () => {
+    await main();
+  }, cycleTimeInSeconds);
+})();
+
+
+async function main() {
   const currentTime = new Date();
-  console.log(currentTime);
+  console.log('Starting transaction cycle..', currentTime);
 
   try {
-    // setInterval(async () => {
-    const a = await execSync(runCommand, { stdio: "inherit" });
-
-    const nextRunTime = new Date(
-      currentTime.setHours(currentTime.getHours() + 2)
-    );
+    // const a = await execSync(runCommand, { stdio: "inherit" });
+    const nextRunTime = new Date(currentTime.setHours(currentTime.getHours() + 2));
     console.log("Running next at: ", nextRunTime);
-    // }, cycleTimeInSeconds);
-  } catch (err) {
-    console.error(err);
-  }
 
-})();
+  } catch (err) {
+    const errorMsg = `An unexpected error has occurred: ${err.message}\n\nStack: ${err.stack}`
+    await logToDiscord(errorMsg);
+  }
+}
 
 
 /**
