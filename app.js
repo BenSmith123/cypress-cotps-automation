@@ -21,7 +21,7 @@ const testRunCommand =
 
   try {
     // setInterval(async () => {
-    const a = await execSync(testRunCommand, { stdio: "inherit" });
+    const a = await execSync(runCommand, { stdio: "inherit" });
 
     const nextRunTime = new Date(
       currentTime.setHours(currentTime.getHours() + 2)
