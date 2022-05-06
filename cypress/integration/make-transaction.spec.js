@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
 import { wait } from "../support/utils";
-import "cypress-promise/register";
 
 describe("Running Cypress COTPS transaction automation...", () => {
   beforeEach(() => {
