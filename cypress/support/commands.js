@@ -24,8 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { wait } from "../support/utils"
-
+import { wait } from "../support/utils";
 
 Cypress.Commands.add("login", () => {
   // LOG IN!
@@ -41,12 +40,6 @@ Cypress.Commands.add("login", () => {
     .type(Cypress.env("password"));
 
   cy.get(".login").click();
-});
-
-Cypress.Commands.add("test", () => {
-  cy.wait(1000);
-  console.log("TESTING");
-  return cy.wrap("foo");
 });
 
 Cypress.Commands.add("runOrderCycle", () => {
@@ -84,12 +77,12 @@ Cypress.Commands.add("getBalance", () => {
 Cypress.Commands.add("makeTransaction", () => {
   console.log("making transaction");
   cy.get(".orderBtn").click();
-  wait(7);
+  wait(8);
   cy.get('.buttons > [type="primary"]').click({ force: true });
-  wait(5);
+  wait(6);
   cy.get(
     ".fui-wrap__show > .fui-dialog__inner > .fui-dialog__body > uni-button"
   ).click();
-  wait(3);
+  wait(4);
   return cy.wrap("transaction made");
 });

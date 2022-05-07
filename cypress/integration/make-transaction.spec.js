@@ -14,9 +14,9 @@ describe("Running Cypress COTPS transaction automation...", () => {
       cy.login();
 
       // click on transaction hall tab
-      wait(2);
+      wait(3);
       cy.get(":nth-child(3) > .uni-tabbar__bd").click();
-      wait(7);
+      wait(8);
 
       // place orders recursively until no more funds exist
       cy.runOrderCycle().then(() => {
