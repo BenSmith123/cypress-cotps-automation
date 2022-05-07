@@ -1,6 +1,7 @@
 
 # custom
 *.env*
+.linux-cli-commands
 .DS_Store
 
 # dependencies
