@@ -14,6 +14,7 @@ const { discordKey, runCommand } = getEnvironemnt();
 
 (async () => {
   // run on first execution before setting the 2hr timer
+  await logToDiscord("COTPS bot says hello from VPS!");
   await main();
 
   setInterval(async () => {
