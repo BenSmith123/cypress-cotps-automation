@@ -48,7 +48,7 @@ export const logToDiscord = (message) => {
 	const url = "https://discord.com/api/webhooks/849967012062691328/" + Cypress.env("DISCORD_KEY");
 
 	if (typeof message !== 'string') {
-		data.content = JSON.stringify(message, null, 4).replace(/"|,/g, '');
+		message = JSON.stringify(message, null, 4).replace(/"|,/g, '');
 	}
 
 	const params = {

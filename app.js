@@ -82,7 +82,7 @@ function getEnvironemnt() {
 	const url = "https://discord.com/api/webhooks/849967012062691328/" + discordKey;
 
 	if (typeof message !== 'string') {
-		data.content = JSON.stringify(message, null, 4).replace(/"|,/g, '');
+		message = JSON.stringify(message, null, 4).replace(/"|,/g, '');
 	}
 
 	const params = {
