@@ -14,7 +14,7 @@ const { discordKey, runCommand } = getEnvironemnt();
 
 (async () => {
   // run on first execution before setting the 2hr timer
-  await logToDiscord("COTPS bot says hello from VPS!");
+  // await logToDiscord("COTPS bot says hello from VPS!");
   await main();
 
   setInterval(async () => {
@@ -35,8 +35,9 @@ async function main() {
     console.log("Running next at: ", nextRunTime);
 
   } catch (err) {
-    const errorMsg = `An unexpected error has occurred: ${err.message}\n\nStack: ${err.stack}`;
-    await logToDiscord(errorMsg);
+    // suppress error to keep running bot
+    console.log('Error running cypress: ', err);
+    await logToDiscord("Cypress threw an error"); // TODO - remove this once the inner cypress discord logging is fixed
   }
 }
 
@@ -72,7 +73,7 @@ function getEnvironemnt() {
  *
  * @param {string|object} message
  */
- async function logToDiscord(message) {
+ async function logToDiscord(message) { // TODO - replace this with the cypress discord logger if possible
 
 	if (!discordKey) { return null; }
 
