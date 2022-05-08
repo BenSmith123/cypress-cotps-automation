@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import axios from 'axios'
 import { wait } from "../support/utils";
 
 describe("Running Cypress COTPS transaction automation...", async () => {
@@ -26,6 +27,7 @@ describe("Running Cypress COTPS transaction automation...", async () => {
         console.log("done");
       });
     } catch (err) {
+      console.error(err);
       logToDiscord(err);
       cy.log(err);
       throw err;
@@ -41,8 +43,7 @@ describe("Running Cypress COTPS transaction automation...", async () => {
  */
 export const logToDiscord = (message) => {
 
-	if (!Cypress.env("DISCORD_KEY")) { return null; }
-
+  if (!Cypress.env("DISCORD_KEY")) { return null; }
 	if (!message) { throw new Error('No message content'); }
 
 	const url = "https://discord.com/api/webhooks/849967012062691328/" + Cypress.env("DISCORD_KEY");
@@ -64,7 +65,7 @@ export const logToDiscord = (message) => {
 	};
 
 	try {
-		return axios(params);
+		return await axios(params);
 	} catch (err) {
 		// suppress error
 		console.log('Error sending message to discord: ', err);
