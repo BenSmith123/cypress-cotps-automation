@@ -13,7 +13,6 @@ The node processes are run using the pm2 [https://www.npmjs.com/package/pm2] npm
 - `CYPRESS_RECORD_KEY` - optional
 - `DISCORD_KEY` - optional
 
-
 ## Commands
 - See `.linux-cli-commands` for running in EC2 etc.
 
@@ -23,7 +22,7 @@ The node processes are run using the pm2 [https://www.npmjs.com/package/pm2] npm
 
 ## EC2 instance
 ### Connect to ec2 instance:
-- (Navigate to where file is) and run:`ssh -i "cypress-automation-ec2-key.pem" ec2-user@ec2-54-206-21-84.ap-southeast-2.compute.amazonaws.com`;
+- (Navigate to where file is) and run: `ssh -i "cypress-automation-ec2-key.pem" ec2-user@ec2-54-206-21-84.ap-southeast-2.compute.amazonaws.com`;
 - `cd cypress-cotps-automation`
 - Use git to pull latest changes
 

@@ -13,9 +13,7 @@ describe("Running Cypress COTPS transaction automation...", async () => {
     try {
       console.log("starting");
 
-      throw new Error('testing')
       cy.login();
-
 
       // click on transaction hall tab
       wait(3);
@@ -28,7 +26,7 @@ describe("Running Cypress COTPS transaction automation...", async () => {
       });
     } catch (err) {
       console.error(err);
-      logToDiscord(err);
+      // logToDiscord(err);
       cy.log(err);
       throw err;
     }
@@ -36,39 +34,39 @@ describe("Running Cypress COTPS transaction automation...", async () => {
 });
 
 
-/**
- * Sends a POST request message to discord
- *
- * @param {string|object} message
- */
-export const logToDiscord = (message) => {
+// /**
+//  * Sends a POST request message to discord
+//  *
+//  * @param {string|object} message
+//  */
+// export const logToDiscord = (message) => {
 
-  if (!Cypress.env("DISCORD_KEY")) { return null; }
-	if (!message) { throw new Error('No message content'); }
+//   if (!Cypress.env("DISCORD_KEY")) { return null; }
+// 	if (!message) { throw new Error('No message content'); }
 
-	const url = "https://discord.com/api/webhooks/849967012062691328/" + Cypress.env("DISCORD_KEY");
+// 	const url = "https://discord.com/api/webhooks/849967012062691328/" + Cypress.env("DISCORD_KEY");
 
-	if (typeof message !== 'string') {
-		message = JSON.stringify(message, null, 4).replace(/"|,/g, '');
-	}
+// 	if (typeof message !== 'string') {
+// 		message = JSON.stringify(message, null, 4).replace(/"|,/g, '');
+// 	}
 
-	const params = {
-		url,
-		method: 'POST',
-		data: {
-      username: 'COTPS automation',
-      content: message,
-    },
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	};
+// 	const params = {
+// 		url,
+// 		method: 'POST',
+// 		data: {
+//       username: 'COTPS automation',
+//       content: message,
+//     },
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 		},
+// 	};
 
-	try {
-		return await axios(params);
-	} catch (err) {
-		// suppress error
-		console.log('Error sending message to discord: ', err);
-		return err;
-	}
-}
+// 	try {
+// 		return await axios(params);
+// 	} catch (err) {
+// 		// suppress error
+// 		console.log('Error sending message to discord: ', err);
+// 		return err;
+// 	}
+// }

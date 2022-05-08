@@ -5,7 +5,8 @@ require('dotenv').config();
 // for debugging - skip running cypress
 const SKIP_CYPRESS = process.env?.SKIP_CYPRESS ?? false;
 
-const cycleTimeInSeconds = 7666 * 1000; // every 2hrs and 10mins-ish
+const cycleTimeInSeconds = 2100 * 1000; // run every 35mins
+// 7666 * 1000; // every 2hrs and 10mins-ish
 
 const testRunCommand = 'npm run cy:run -- --spec "cypress/integration/test.spec.js"';
 
