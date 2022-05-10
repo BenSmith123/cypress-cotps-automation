@@ -10,7 +10,7 @@ const cycleTimeInSeconds = 2100 * 1000; // run every 35mins
 
 const testRunCommand = 'npm run cy:run -- --spec "cypress/integration/test.spec.js"';
 
-const { discordKey, runCommand } = getEnvironemnt();
+const { discordKey, runCommand, displayName } = getEnvironemnt();
 
 
 (async () => {
@@ -38,7 +38,7 @@ async function main() {
   } catch (err) {
     // suppress error to keep running bot
     console.log('Error running cypress: ', err);
-    await logToDiscord("Cypress threw an error"); // TODO - remove this once the inner cypress discord logging is fixed
+    await logToDiscord("Cypress threw an error - " + displayName); // TODO - remove this once the inner cypress discord logging is fixed
   }
 }
 
@@ -53,6 +53,7 @@ function getEnvironemnt() {
   const password = process.env.COTPS_PASSWORD;
   const cypressRecordKey = process.env.CYPRESS_RECORD_KEY; // optional - disable cypress recording
   const discordKey = process.env.DISCORD_KEY; // optional - disable discord logs
+  const displayName = process.env.DISPLAY_NAME ?? 'Unknown';
 
   if (!username || !password) {
     throw new Error('Username and password are required');
@@ -65,7 +66,8 @@ function getEnvironemnt() {
 
   return {
     runCommand,
-    discordKey
+    discordKey,
+    displayName
   };
 }
 

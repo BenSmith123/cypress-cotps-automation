@@ -30,5 +30,5 @@ The node processes are run using the pm2 [https://www.npmjs.com/package/pm2] npm
 - See running processes: `pm2 describe {name}` e.g. `pm2 describe app`
 
 ### Running in EC2
-- Debug/run app: `COTPS_USERNAME={username} COTPS_PASSWORD={password} node app.js`
-- Start a `pm2` process: `COTPS_USERNAME={username} COTPS_PASSWORD={password} pm2 start app.js --update-env`
+- Debug/run app: `DISPLAY_NAME={firstName} COTPS_USERNAME={username} COTPS_PASSWORD={password} node app.js`
+- Start a `pm2` process: `DISPLAY_NAME={firstName} COTPS_USERNAME={username} COTPS_PASSWORD={password} pm2 start app.js --update-env`
