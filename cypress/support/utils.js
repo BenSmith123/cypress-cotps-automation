@@ -1,4 +1,4 @@
-const waitTimeMultiplier = 1;
+const waitTimeMultiplier = 1.5;
 
 /**
  * @param {number} [sec=1]
