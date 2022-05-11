@@ -29,6 +29,7 @@ import { wait } from "../support/utils";
 Cypress.Commands.add("login", () => {
   // LOG IN!
   cy.get(".uni-tabbar > :nth-child(5)").click();
+  wait(2);
   cy.get(":nth-child(5) > uni-text").click();
   cy.get(":nth-child(151)").click();
 

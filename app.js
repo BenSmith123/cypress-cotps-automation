@@ -30,7 +30,7 @@ async function main() {
 
   try {
     if (!SKIP_CYPRESS) {
-      await execSync(runCommand, { stdio: "inherit" });
+      await execSync(runCommand, { stdio: "inherit", stderr: "inherit" });
     }
     const nextRunTime = new Date(currentTime.setHours(currentTime.getHours() + 2));
     console.log("Running next at: ", nextRunTime);
