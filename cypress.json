@@ -1,4 +1,5 @@
 {
   "projectId": "et78y8",
-  "defaultCommandTimeout": 10000
+  "defaultCommandTimeout": 10000,
+  "video" : false
 }
