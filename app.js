@@ -5,26 +5,10 @@ require('dotenv').config();
 // for debugging - skip running cypress
 const SKIP_CYPRESS = process.env?.SKIP_CYPRESS ?? false;
 
-const cycleTimeInSeconds = 2100 * 1000; // run every 35mins
-// 7666 * 1000; // every 2hrs and 10mins-ish
-
-const testRunCommand = 'npm run cy:run -- --spec "cypress/integration/test.spec.js"';
-
 const { discordKey, runCommand, displayName } = getEnvironemnt();
 
 
 (async () => {
-  // run on first execution before setting the 2hr timer
-  // await logToDiscord("COTPS bot says hello from VPS!");
-  await main();
-
-  setInterval(async () => {
-    await main();
-  }, cycleTimeInSeconds);
-})();
-
-
-async function main() {
   const currentTime = new Date();
   console.log('Starting transaction cycle..', currentTime);
 
@@ -40,7 +24,7 @@ async function main() {
     console.log('Error running cypress: ', err);
     await logToDiscord("Cypress threw an error - " + displayName); // TODO - remove this once the inner cypress discord logging is fixed
   }
-}
+})();
 
 
 /**
